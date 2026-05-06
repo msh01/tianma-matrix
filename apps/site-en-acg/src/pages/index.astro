@@ -1,33 +1,46 @@
 ---
-import BaseLayout from "@tianma/ui-components/BaseLayout.astro";
+import OfficialBlogLayout from "@tianma/ui-components/OfficialBlogLayout.astro";
 import AdSense from "@tianma/google-ads/AdSense.astro";
 import "../styles/global.css";
+
+const posts = [
+  {
+    title: "Best Anime Watch Order Guides for New Fans",
+    description: "A practical editorial format for evergreen watch-order content with search intent, spoilers, and franchise timelines in mind.",
+    tag: "Watch Guide"
+  },
+  {
+    title: "Character Explainers That Stay Useful After a Season Ends",
+    description: "How to structure character profiles around motivations, relationships, arcs, and spoiler-safe sections.",
+    tag: "Characters"
+  },
+  {
+    title: "Seasonal Anime Roundups Built for Search Traffic",
+    description: "A repeatable content pattern for upcoming anime, release windows, streaming notes, and genre expectations.",
+    tag: "Seasonal"
+  }
+];
 ---
 
-<BaseLayout
+<OfficialBlogLayout
   title="Tianma ACG Guide | Anime Culture, Watchlists, and Character Notes"
   description="An English anime and ACG content site prepared for AdSense monetization."
   canonical="https://acg.tianma.example/"
   lang="en"
   siteName="Tianma ACG Guide"
+  tagline="Anime guides, watchlists, and character notes written for global readers, with a lightweight official Astro Blog-style reading experience."
+  navItems={[{ label: "Home", href: "/" }, { label: "Guides", href: "/" }]}
   enableAds={true}
 >
-  <section class="max-w-3xl">
-    <p class="text-sm font-semibold text-brand-600">Anime Content Network</p>
-    <h1 class="mt-3 text-4xl font-bold leading-tight">Anime explainers and evergreen ACG guides for global readers</h1>
-    <p class="mt-4 leading-8 text-ink-700">
-      This SSG site is structured for English SEO articles, evergreen guides, and AdSense-ready content pages.
-    </p>
-  </section>
-
-  <AdSense class="mt-8" />
-
-  <section class="mt-10 grid gap-4 sm:grid-cols-3">
-    {["Seasonal watchlists", "Character guides", "Beginner explainers"].map((item) => (
-      <article class="rounded-lg border border-ink-100 bg-white p-5">
-        <h2 class="font-semibold">{item}</h2>
-        <p class="mt-2 text-sm leading-6 text-ink-700">Static content demo for the ACG vertical.</p>
+  <section class="space-y-8">
+    {posts.map((post) => (
+      <article class="border-b border-zinc-200 pb-8 last:border-0">
+        <p class="text-sm text-zinc-500">{post.tag}</p>
+        <h2 class="mt-3 text-2xl font-bold tracking-tight">{post.title}</h2>
+        <p class="mt-3 leading-7 text-zinc-600">{post.description}</p>
       </article>
     ))}
   </section>
-</BaseLayout>
+
+  <AdSense class="mt-10" />
+</OfficialBlogLayout>

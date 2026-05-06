@@ -5,6 +5,7 @@
   "type": "module",
   "exports": {
     "./BaseLayout.astro": "./src/layouts/BaseLayout.astro",
+    "./OfficialBlogLayout.astro": "./src/layouts/OfficialBlogLayout.astro",
     "./WeChatPromoCard.astro": "./src/components/WeChatPromoCard.astro"
   },
   "peerDependencies": {

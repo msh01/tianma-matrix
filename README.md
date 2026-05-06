@@ -11,6 +11,15 @@
 | `apps/site-en-acg` | 英文动漫、ACG 相关内容站 | Google AdSense | `4323` |
 | `apps/site-en-china` | 英文中国文化、常识、旅行与生活介绍 | Google AdSense | `4324` |
 
+## 官方主题
+
+| 应用 | Astro 官方主题 | 落地方式 |
+| --- | --- | --- |
+| `site-zh-ai` | Starlight | 使用 `@astrojs/starlight`，内容位于 `src/content/docs` |
+| `site-zh-it` | Blog | 使用官方 Blog 风格的极简共享布局 `OfficialBlogLayout.astro` |
+| `site-en-acg` | Blog | 使用官方 Blog 风格的极简共享布局，并保留 AdSense 占位 |
+| `site-en-china` | Starlight | 使用 `@astrojs/starlight`，通过 `head` 注入 GA4 与 AdSense 脚本 |
+
 ## 目录结构
 
 ```text
