@@ -2,6 +2,7 @@
   "name": "tianma-matrix",
   "version": "0.1.0",
   "private": true,
+  "license": "UNLICENSED",
   "packageManager": "pnpm@9.15.4",
   "workspaces": [
     "apps/*",

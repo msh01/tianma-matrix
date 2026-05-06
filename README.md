@@ -158,3 +158,9 @@ export default {
 - 为中文 AI 站替换真实公众号二维码。
 - 增加内容生成管线，例如从 Markdown、Notion、飞书文档或爬虫结果自动生成文章。
 - 增加 sitemap、RSS、robots.txt 和站点级 SEO 配置。
+
+## License
+
+本项目采用专有授权协议。未经版权持有人事先书面授权，不得将本项目或其衍生作品用于任何商业用途。
+
+详见 [LICENSE](./LICENSE)。
