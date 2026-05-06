@@ -1,0 +1,41 @@
+---
+export interface Props {
+  clientId?: string;
+  slot?: string;
+  format?: "auto" | "fluid" | "rectangle" | "horizontal" | "vertical";
+  layout?: string;
+  class?: string;
+}
+
+const {
+  clientId = "ca-pub-0000000000000000",
+  slot = "0000000000",
+  format = "auto",
+  layout,
+  class: className = ""
+} = Astro.props;
+---
+
+<script
+  async
+  src={`https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${clientId}`}
+  crossorigin="anonymous"
+></script>
+
+<div class={`my-8 rounded border border-dashed border-ink-100 bg-white p-4 text-center ${className}`}>
+  <ins
+    class="adsbygoogle block min-h-24 text-sm text-ink-700"
+    style="display:block"
+    data-ad-client={clientId}
+    data-ad-slot={slot}
+    data-ad-format={format}
+    data-ad-layout={layout}
+    data-full-width-responsive="true"
+  >
+    AdSense placement
+  </ins>
+</div>
+
+<script is:inline>
+  (adsbygoogle = window.adsbygoogle || []).push({});
+</script>

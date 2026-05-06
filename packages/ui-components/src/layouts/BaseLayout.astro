@@ -1,0 +1,82 @@
+---
+import AdSense from "@tianma/google-ads/AdSense.astro";
+import GoogleAnalytics from "@tianma/google-ads/GoogleAnalytics.astro";
+
+type OpenGraph = {
+  title?: string;
+  description?: string;
+  image?: string;
+  type?: string;
+};
+
+export interface Props {
+  title: string;
+  description: string;
+  canonical?: string;
+  lang?: "zh-CN" | "en";
+  siteName?: string;
+  openGraph?: OpenGraph;
+  enableAds?: boolean;
+  adsenseClientId?: string;
+  adsenseSlot?: string;
+  gaMeasurementId?: string;
+}
+
+const {
+  title,
+  description,
+  canonical,
+  lang = "zh-CN",
+  siteName = "Tianma Matrix",
+  openGraph = {},
+  enableAds = false,
+  adsenseClientId,
+  adsenseSlot,
+  gaMeasurementId
+} = Astro.props;
+
+const ogTitle = openGraph.title ?? title;
+const ogDescription = openGraph.description ?? description;
+const ogType = openGraph.type ?? "website";
+---
+
+<!doctype html>
+<html lang={lang}>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    {canonical && <link rel="canonical" href={canonical} />}
+    <meta property="og:site_name" content={siteName} />
+    <meta property="og:title" content={ogTitle} />
+    <meta property="og:description" content={ogDescription} />
+    <meta property="og:type" content={ogType} />
+    {openGraph.image && <meta property="og:image" content={openGraph.image} />}
+    <meta name="twitter:card" content={openGraph.image ? "summary_large_image" : "summary"} />
+    {enableAds && <GoogleAnalytics measurementId={gaMeasurementId} />}
+  </head>
+  <body class="min-h-screen bg-ink-50 font-sans text-ink-900 antialiased">
+    <header class="border-b border-ink-100 bg-white/90 backdrop-blur">
+      <nav class="mx-auto flex max-w-5xl items-center justify-between px-5 py-4">
+        <a class="text-sm font-semibold tracking-wide text-brand-600" href="/">{siteName}</a>
+        <span class="text-xs uppercase text-ink-700">{lang === "en" ? "Static Content Network" : "内容站群矩阵"}</span>
+      </nav>
+    </header>
+
+    <main class="mx-auto max-w-5xl px-5 py-10">
+      <slot />
+      {
+        enableAds && (
+          <AdSense clientId={adsenseClientId} slot={adsenseSlot} class="mt-12" />
+        )
+      }
+    </main>
+
+    <footer class="border-t border-ink-100 bg-white">
+      <div class="mx-auto max-w-5xl px-5 py-6 text-sm text-ink-700">
+        © {new Date().getFullYear()} {siteName}. Built with Astro SSG.
+      </div>
+    </footer>
+  </body>
+</html>

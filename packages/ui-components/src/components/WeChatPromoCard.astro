@@ -1,0 +1,30 @@
+---
+export interface Props {
+  accountName?: string;
+  description?: string;
+  benefits?: string[];
+  qrImage?: string;
+}
+
+const {
+  accountName = "天马 AI 实验室",
+  description = "关注公众号，获取 AI 工具、自动化工作流和内容站增长实战笔记。",
+  benefits = ["AI 工具清单", "提示词模板", "自动化内容生产 SOP"],
+  qrImage = "/wechat-qr-placeholder.svg"
+} = Astro.props;
+---
+
+<aside class="mt-10 grid gap-5 rounded-lg border border-brand-500/20 bg-white p-5 shadow-soft sm:grid-cols-[1fr_132px]">
+  <div>
+    <p class="text-sm font-semibold text-brand-600">微信公众号</p>
+    <h2 class="mt-2 text-2xl font-bold text-ink-900">{accountName}</h2>
+    <p class="mt-3 leading-7 text-ink-700">{description}</p>
+    <ul class="mt-4 flex flex-wrap gap-2">
+      {benefits.map((benefit) => <li class="rounded bg-ink-50 px-3 py-1 text-sm text-ink-700">{benefit}</li>)}
+    </ul>
+  </div>
+  <div class="flex flex-col items-center justify-center gap-2">
+    <img class="h-32 w-32 rounded border border-ink-100 object-cover" src={qrImage} alt={`${accountName} 二维码`} />
+    <span class="text-xs text-ink-700">扫码领取干货福利</span>
+  </div>
+</aside>

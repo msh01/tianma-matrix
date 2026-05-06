@@ -1,0 +1,10 @@
+<svg width="256" height="256" viewBox="0 0 256 256" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="WeChat QR placeholder">
+  <rect width="256" height="256" fill="#f7f7f8"/>
+  <rect x="28" y="28" width="64" height="64" fill="#0f766e"/>
+  <rect x="164" y="28" width="64" height="64" fill="#0f766e"/>
+  <rect x="28" y="164" width="64" height="64" fill="#0f766e"/>
+  <rect x="48" y="48" width="24" height="24" fill="#ffffff"/>
+  <rect x="184" y="48" width="24" height="24" fill="#ffffff"/>
+  <rect x="48" y="184" width="24" height="24" fill="#ffffff"/>
+  <path fill="#111827" d="M116 36h16v16h-16zM132 52h16v16h-16zM108 84h24v24h-24zM148 100h16v16h-16zM180 116h24v24h-24zM116 140h16v16h-16zM140 156h40v16h-40zM188 180h16v24h-16zM116 204h48v16h-48z"/>
+</svg>

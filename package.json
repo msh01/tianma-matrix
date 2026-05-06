@@ -1,0 +1,30 @@
+{
+  "name": "tianma-matrix",
+  "version": "0.1.0",
+  "private": true,
+  "packageManager": "pnpm@9.15.4",
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "scripts": {
+    "build": "node scripts/build.mjs",
+    "build:turbo": "turbo run build",
+    "dev": "turbo run dev --parallel",
+    "dev:zh-ai": "npm run dev --workspace @tianma/site-zh-ai",
+    "dev:zh-it": "npm run dev --workspace @tianma/site-zh-it",
+    "dev:en-acg": "npm run dev --workspace @tianma/site-en-acg",
+    "dev:en-china": "npm run dev --workspace @tianma/site-en-china",
+    "lint": "turbo run lint",
+    "format": "prettier --write .",
+    "typecheck": "turbo run check"
+  },
+  "devDependencies": {
+    "@astrojs/check": "^0.9.4",
+    "astro": "^5.1.1",
+    "prettier": "^3.4.2",
+    "prettier-plugin-astro": "^0.14.1",
+    "turbo": "^2.3.3",
+    "typescript": "^5.7.2"
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "name": "@tianma/ui-components",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "exports": {
+    "./BaseLayout.astro": "./src/layouts/BaseLayout.astro",
+    "./WeChatPromoCard.astro": "./src/components/WeChatPromoCard.astro"
+  },
+  "peerDependencies": {
+    "astro": "^5.0.0"
+  },
+  "dependencies": {
+    "@tianma/google-ads": "workspace:*"
+  },
+  "scripts": {
+    "build": "astro check",
+    "check": "astro check",
+    "lint": "astro check"
+  },
+  "devDependencies": {
+    "astro": "^5.1.1",
+    "@astrojs/check": "^0.9.4",
+    "typescript": "^5.7.2"
+  }
+}
