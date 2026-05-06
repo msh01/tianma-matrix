@@ -1,7 +1,13 @@
 ---
 import { getCollection, render } from "astro:content";
-import BookwormLayout from "@tianma/ui-components/BookwormLayout.astro";
-import { formatViews, getArticleViews } from "../../lib/views";
+import ForumLayout from "@tianma/ui-components/ForumLayout.astro";
+import {
+  formatViews,
+  getActivityLabel,
+  getArticleViews,
+  getParticipants,
+  getReplyCount
+} from "../../lib/views";
 import "../../styles/global.css";
 
 export async function getStaticPaths() {
@@ -23,61 +29,73 @@ const similarArticles = allArticles.filter((item) => item.data.tag === article.d
 const fallbackArticles = allArticles.slice(0, 2);
 const relatedArticles = similarArticles.length ? similarArticles : fallbackArticles;
 const views = getArticleViews(article.slug);
+const replies = getReplyCount(article.slug);
+const participants = getParticipants(article.slug);
 ---
 
-<BookwormLayout
+<ForumLayout
   title={`${article.data.title} | 天马 IT 技术笔记`}
   description={article.data.description}
   canonical={`https://it.tianma.example/articles/${article.slug}/`}
-  siteName="天马 IT 技术笔记"
+  siteName="TIANMA DEV"
 >
-  <article class="mx-auto max-w-4xl px-5 py-14">
-    <a class="text-sm font-bold text-[#01AD9F] transition hover:text-[#152035]" href="/">返回文章列表</a>
-    <header class="mt-8 text-center">
-      <a class="text-sm font-bold uppercase tracking-[0.18em] text-[#01AD9F]" href={`/categories/${article.data.tag}/`}>
-        {article.data.tag}
-      </a>
-      <h1 class="mx-auto mt-4 max-w-3xl text-4xl font-bold leading-tight text-[#152035] md:text-5xl">{article.data.title}</h1>
-      <p class="mx-auto mt-5 max-w-2xl text-lg leading-8 text-[#747577]">{article.data.description}</p>
-      <div class="mt-6 flex flex-wrap justify-center gap-4 text-sm font-semibold text-[#747577]">
-        <span>天马</span>
+  <article class="mx-auto max-w-[980px] py-8">
+    <a class="text-sm font-semibold text-[#0088cc] transition hover:text-[#222]" href="/">← 返回话题列表</a>
+    <header class="mt-6 border-b border-[#e5e5e5] pb-5">
+      <h1 class="text-3xl font-semibold leading-tight text-[#222] md:text-4xl">{article.data.title}</h1>
+      <div class="mt-4 flex flex-wrap items-center gap-3 text-sm text-[#777]">
+        <a class="bg-[#eee] px-2 py-0.5 text-[#666]" href={`/categories/${article.data.tag}/`}>{article.data.tag}</a>
         <time datetime={article.data.publishedAt.toISOString()}>{publishedDate}</time>
         <span>{article.data.readingTime}</span>
         <span>{formatViews(views)} 浏览</span>
+        <span>{replies} 回复</span>
+        <span>最后活动 {getActivityLabel(article.slug)}</span>
       </div>
     </header>
 
-    <div class="article-body mx-auto mt-12 max-w-3xl border-t border-[#D5D5D5] pt-10">
-      <Content />
+    <div class="mt-8 grid gap-5 md:grid-cols-[52px_1fr]">
+      <div class="flex h-11 w-11 items-center justify-center rounded-full bg-[#111827] font-bold text-white">天</div>
+      <div class="min-w-0 border-b border-[#eee] pb-8">
+        <div class="mb-4 flex items-center gap-2 text-sm text-[#777]">
+          <span class="font-semibold text-[#222]">天马</span>
+          <span>楼主</span>
+          <span>{publishedDate}</span>
+        </div>
+        <p class="mb-6 rounded bg-[#d7f1fc] px-4 py-3 leading-7 text-[#333]">{article.data.description}</p>
+        <div class="article-body">
+          <Content />
+        </div>
+      </div>
     </div>
 
-    <aside class="mx-auto mt-12 flex max-w-3xl flex-wrap items-center gap-3 border-y border-[#D5D5D5] py-5">
-      <span class="font-bold text-[#152035]">分享：</span>
-      <a class="rounded border border-[#D5D5D5] px-3 py-2 text-sm font-semibold text-[#152035] transition hover:border-[#01AD9F] hover:text-[#01AD9F]" href={`https://twitter.com/intent/tweet?text=${encodeURIComponent(article.data.title)}&url=${encodeURIComponent(Astro.url.href)}`}>X</a>
-      <a class="rounded border border-[#D5D5D5] px-3 py-2 text-sm font-semibold text-[#152035] transition hover:border-[#01AD9F] hover:text-[#01AD9F]" href={`https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(Astro.url.href)}`}>LinkedIn</a>
+    <aside class="mt-8 flex flex-wrap items-center gap-3 border-y border-[#eee] py-5">
+      <span class="font-semibold text-[#222]">参与者：</span>
+      {participants.map((name, index) => (
+        <span class="flex h-8 w-8 items-center justify-center rounded-full text-xs font-bold text-white" style={`background:${["#a16207", "#64748b", "#111827", "#16a34a", "#e11d48"][index]}`}>{name}</span>
+      ))}
+      <span class="ml-auto text-sm text-[#777]">{replies} 条回复 · {formatViews(views)} 次浏览</span>
     </aside>
   </article>
 
-  <section class="mx-auto max-w-6xl px-5 pb-16">
-    <h2 class="mb-8 text-3xl font-bold text-[#152035]">相似文章</h2>
-    <div class="grid gap-8 sm:grid-cols-2">
+  <section class="mx-auto max-w-[980px] pb-16">
+    <h2 class="mb-5 text-xl font-semibold text-[#222]">相关话题</h2>
+    <div class="space-y-3">
       {relatedArticles.map((item) => (
-        <article class="rounded-lg border border-[#D5D5D5] p-6 transition hover:border-[#01AD9F]">
-          <p class="text-sm font-semibold text-[#01AD9F]">{item.data.tag}</p>
-          <p class="mt-2 text-sm font-semibold text-[#747577]">{formatViews(getArticleViews(item.slug))} 浏览</p>
-          <h3 class="mt-3 text-2xl font-bold leading-tight text-[#152035]">
-            <a class="transition hover:text-[#01AD9F]" href={`/articles/${item.slug}/`}>{item.data.title}</a>
+        <article class="grid grid-cols-[1fr_72px_90px] gap-4 border-b border-[#eee] py-3">
+          <h3 class="truncate text-lg text-[#222]">
+            <a class="hover:text-[#0088cc]" href={`/articles/${item.slug}/`}>{item.data.title}</a>
           </h3>
-          <p class="mt-3 line-clamp-2 leading-7">{item.data.description}</p>
+          <span class="text-right font-semibold text-[#9a6a3a]">{getReplyCount(item.slug)}</span>
+          <span class="text-right text-[#999]">{formatViews(getArticleViews(item.slug))}</span>
         </article>
       ))}
     </div>
   </section>
-</BookwormLayout>
+</ForumLayout>
 
 <style is:global>
   .article-body {
-    color: #3f4652;
+    color: #333;
     line-height: 1.9;
     font-size: 1.05rem;
   }
@@ -88,7 +106,7 @@ const views = getArticleViews(article.slug);
 
   .article-body h2 {
     margin: 2.2rem 0 0.9rem;
-    color: #152035;
+    color: #222;
     font-size: 1.5rem;
     font-weight: 700;
     line-height: 1.35;
@@ -96,9 +114,9 @@ const views = getArticleViews(article.slug);
 
   .article-body code {
     border-radius: 0.25rem;
-    background: #f2f7f6;
+    background: #f3f4f6;
     padding: 0.1rem 0.3rem;
-    color: #152035;
+    color: #222;
     font-size: 0.9em;
   }
 </style>

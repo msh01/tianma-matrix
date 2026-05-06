@@ -1,0 +1,121 @@
+---
+export interface Props {
+  title: string;
+  description: string;
+  canonical?: string;
+  siteName?: string;
+}
+
+const {
+  title,
+  description,
+  canonical,
+  siteName = "TIANMA DEV"
+} = Astro.props;
+
+const primaryItems = [
+  { label: "话题", href: "/", icon: "▣", active: true },
+  { label: "近期活动", href: "/", icon: "▦" },
+  { label: "更多", href: "/", icon: "⋮" }
+];
+
+const categories = [
+  { label: "开发调优", href: "/categories/Frontend/", icon: "⌁", color: "#00a8c8" },
+  { label: "构建系统", href: "/categories/Build/", icon: "◆", color: "#f59e0b" },
+  { label: "架构设计", href: "/categories/Architecture/", icon: "●", color: "#16a34a" },
+  { label: "内容工程", href: "/categories/Content/", icon: "■", color: "#8b5cf6" },
+  { label: "TypeScript", href: "/categories/TypeScript/", icon: "▤", color: "#2563eb" },
+  { label: "SEO", href: "/categories/SEO/", icon: "◌", color: "#06b6d4" },
+  { label: "流程实践", href: "/categories/Process/", icon: "✚", color: "#ef4444" }
+];
+
+const tags = ["人工智能", "公告", "原创", "快问快答", "软件开发", "GitHub"];
+---
+
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-name" content="forum-style-technical-community" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    {canonical && <link rel="canonical" href={canonical} />}
+    <meta property="og:site_name" content={siteName} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content="website" />
+    <meta name="twitter:card" content="summary" />
+  </head>
+  <body class="min-h-screen bg-white font-sans text-[#222] antialiased">
+    <header class="fixed inset-x-0 top-0 z-30 border-b border-[#e5e5e5] bg-white">
+      <nav class="mx-auto flex h-[60px] max-w-[1720px] items-center justify-between px-5">
+        <div class="flex items-center gap-6">
+          <button class="hidden h-9 w-9 items-center justify-center rounded text-3xl leading-none text-[#aaa] lg:flex" aria-label="菜单">
+            ≡
+          </button>
+          <a class="flex items-center gap-3" href="/">
+            <span class="relative block h-10 w-10 overflow-hidden rounded-full bg-[#f6b21a]">
+              <span class="absolute inset-x-0 top-0 h-1/2 bg-[#111827]"></span>
+              <span class="absolute inset-x-0 top-1/2 h-[3px] bg-white"></span>
+            </span>
+            <span class="text-lg font-bold tracking-wide text-[#222]">{siteName}</span>
+          </a>
+        </div>
+        <div class="flex items-center gap-2">
+          <a class="rounded bg-[#0088cc] px-4 py-2 text-sm font-bold text-white transition hover:bg-[#087db7]" href="/search/">登录</a>
+          <button class="rounded border border-[#d7d7d7] px-3 py-2 text-sm text-[#777]">ZH⌄</button>
+        </div>
+      </nav>
+    </header>
+
+    <div class="mx-auto grid max-w-[1720px] pt-[60px] lg:grid-cols-[350px_1fr]">
+      <aside class="hidden h-[calc(100vh-60px)] overflow-y-auto border-r border-[#e5e5e5] px-6 py-6 lg:block">
+        <nav>
+          <ul class="space-y-1 border-b border-[#eee] pb-4">
+            {primaryItems.map((item) => (
+              <li>
+                <a class={`flex items-center gap-3 rounded px-3 py-3 font-semibold ${item.active ? "bg-[#d7f1fc] text-[#222]" : "text-[#666] hover:bg-[#f6f6f6]"}`} href={item.href}>
+                  <span class="w-5 text-center text-[#999]">{item.icon}</span>
+                  {item.label}
+                </a>
+              </li>
+            ))}
+          </ul>
+
+          <section class="border-b border-[#eee] py-5">
+            <button class="mb-3 flex w-full items-center gap-2 px-3 text-sm font-bold text-[#555]">⌄ 类别</button>
+            <ul class="space-y-1">
+              {categories.map((category) => (
+                <li>
+                  <a class="flex items-center gap-3 rounded px-3 py-2 text-[#666] hover:bg-[#f6f6f6]" href={category.href}>
+                    <span style={`color:${category.color}`} class="w-5 text-center">{category.icon}</span>
+                    {category.label}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </section>
+
+          <section class="py-5">
+            <button class="mb-3 flex w-full items-center gap-2 px-3 text-sm font-bold text-[#555]">⌄ 标签</button>
+            <ul class="space-y-1">
+              {tags.map((tag, index) => (
+                <li>
+                  <a class="flex items-center gap-3 rounded px-3 py-2 text-[#666] hover:bg-[#f6f6f6]" href="/search/">
+                    <span class="w-5 text-center" style={`color:${["#8b5cf6", "#0ea5e9", "#22c55e", "#f59e0b", "#10b981", "#6b7280"][index]}`}>●</span>
+                    {tag}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </section>
+        </nav>
+      </aside>
+
+      <main class="min-w-0 px-5 py-10 lg:px-10">
+        <slot />
+      </main>
+    </div>
+  </body>
+</html>

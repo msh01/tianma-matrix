@@ -1,6 +1,6 @@
 ---
 import { getCollection } from "astro:content";
-import BookwormLayout from "@tianma/ui-components/BookwormLayout.astro";
+import ForumLayout from "@tianma/ui-components/ForumLayout.astro";
 import { getArticleViews } from "../lib/views";
 import "../styles/global.css";
 
@@ -16,16 +16,17 @@ const articles = (await getCollection("articles"))
   }));
 ---
 
-<BookwormLayout
+<ForumLayout
   title="搜索 | 天马 IT 技术笔记"
   description="搜索天马 IT 技术笔记中的文章。"
   canonical="https://it.tianma.example/search/"
+  siteName="TIANMA DEV"
 >
-  <section class="mx-auto max-w-4xl px-5 py-14">
-    <h1 class="text-4xl font-bold text-[#152035]">搜索文章</h1>
+  <section class="mx-auto max-w-[980px] py-8">
+    <h1 class="text-3xl font-semibold text-[#222]">搜索话题</h1>
     <input
       id="search-input"
-      class="mt-8 w-full rounded-lg border border-[#D5D5D5] px-5 py-4 text-lg text-[#152035] outline-none transition focus:border-[#01AD9F]"
+      class="mt-6 w-full rounded border border-[#cfcfcf] px-5 py-4 text-lg text-[#222] outline-none transition focus:border-[#0088cc]"
       type="search"
       placeholder="输入关键词、分类或标题"
       autocomplete="off"
@@ -42,9 +43,9 @@ const articles = (await getCollection("articles"))
         .map(
           (item) => `
             <article class="border-b border-[#D5D5D5] pb-6">
-              <p class="text-sm font-semibold text-[#01AD9F]">${item.tag} · ${item.date} · ${item.views} 浏览</p>
-              <h2 class="mt-2 text-2xl font-bold text-[#152035]">
-                <a class="transition hover:text-[#01AD9F]" href="${item.url}">${item.title}</a>
+              <p class="text-sm font-semibold text-[#0088cc]">${item.tag} · ${item.date} · ${item.views} 浏览</p>
+              <h2 class="mt-2 text-xl font-medium text-[#222]">
+                <a class="transition hover:text-[#0088cc]" href="${item.url}">${item.title}</a>
               </h2>
               <p class="mt-3 leading-7 text-[#747577]">${item.description}</p>
             </article>
@@ -64,4 +65,4 @@ const articles = (await getCollection("articles"))
       render(filtered);
     });
   </script>
-</BookwormLayout>
+</ForumLayout>

@@ -16,7 +16,7 @@
 | 应用 | Astro 官方主题 | 落地方式 |
 | --- | --- | --- |
 | `site-zh-ai` | Starlight | 使用 `@astrojs/starlight`，内容位于 `src/content/docs` |
-| `site-zh-it` | Bookworm Light Astro | 使用 Themefisher 的 Bookworm Light Astro 风格布局，保留中文技术文章内容集合 |
+| `site-zh-it` | Forum-style | 参考 linux.do 的技术社区信息架构，使用论坛式话题列表、分类侧栏和帖子详情页 |
 | `site-en-acg` | Blog | 使用官方 Blog 风格的极简共享布局，并保留 AdSense 占位 |
 | `site-en-china` | Starlight | 使用 `@astrojs/starlight`，通过 `head` 注入 GA4 与 AdSense 脚本 |
 
