@@ -1,0 +1,204 @@
+---
+import "../styles/global.css";
+
+const services = [
+  {
+    title: "定制软件开发",
+    body: "从需求梳理、原型设计到前后端开发，为业务系统、管理后台和数据平台提供完整交付。"
+  },
+  {
+    title: "移动端与小程序",
+    body: "覆盖微信小程序、H5、App 混合开发，适合会员、预约、门店、内容和交易类场景。"
+  },
+  {
+    title: "企业系统集成",
+    body: "打通 CRM、ERP、支付、消息、工单、报表与第三方接口，让旧系统和新业务协同运转。"
+  },
+  {
+    title: "AI 与自动化工具",
+    body: "把内容生成、客服助理、流程审批和数据分析嵌入现有业务，减少重复操作。"
+  }
+];
+
+const steps = ["业务诊断", "原型确认", "迭代开发", "测试上线", "运维增长"];
+
+const scenarios = [
+  "企业官网与品牌门户",
+  "电商与本地生活系统",
+  "SaaS 与内部管理平台",
+  "数据看板与业务中台",
+  "AI 应用与自动化流程",
+  "遗留系统重构与维护"
+];
+
+const metrics = [
+  { value: "7+", label: "核心交付场景" },
+  { value: "2-4周", label: "首个可用版本" },
+  { value: "1对1", label: "项目经理跟进" }
+];
+---
+
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>冰硅网络科技 | 软件外包与定制开发公司</title>
+    <meta
+      name="description"
+      content="冰硅网络科技专注软件外包、定制软件开发、小程序、企业系统集成、AI 自动化工具和长期运维服务。"
+    />
+    <link rel="canonical" href="https://binggui.example/" />
+    <meta property="og:site_name" content="冰硅网络科技" />
+    <meta property="og:title" content="冰硅网络科技 | 软件外包与定制开发公司" />
+    <meta
+      property="og:description"
+      content="用稳定的工程交付，把业务想法做成真正可上线、可维护、可增长的软件系统。"
+    />
+    <meta property="og:type" content="website" />
+    <meta property="og:image" content="/assets/software-delivery-hero.png" />
+    <meta name="twitter:card" content="summary_large_image" />
+  </head>
+  <body class="min-h-screen bg-[#f6f8fb] font-sans text-[#16202f] antialiased">
+    <header class="fixed inset-x-0 top-0 z-20 border-b border-white/15 bg-[#0c1724]/80 backdrop-blur">
+      <nav class="mx-auto flex max-w-6xl items-center justify-between px-5 py-4 text-white">
+        <a class="text-base font-bold tracking-wide" href="/">冰硅网络科技</a>
+        <div class="hidden items-center gap-7 text-sm text-white/78 md:flex">
+          <a class="transition hover:text-white" href="#services">服务</a>
+          <a class="transition hover:text-white" href="#process">流程</a>
+          <a class="transition hover:text-white" href="#scenarios">场景</a>
+          <a class="transition hover:text-white" href="#contact">联系</a>
+        </div>
+        <a class="rounded-lg bg-white px-4 py-2 text-sm font-semibold text-[#0c1724] transition hover:bg-[#dff5ff]" href="#contact">
+          咨询项目
+        </a>
+      </nav>
+    </header>
+
+    <main>
+      <section class="relative min-h-[92vh] overflow-hidden bg-[#0c1724] pt-24 text-white">
+        <img
+          class="absolute inset-0 h-full w-full object-cover opacity-72"
+          src="/assets/software-delivery-hero.png"
+          alt="冰硅网络科技软件交付工作台视觉"
+          loading="eager"
+        />
+        <div class="absolute inset-0 bg-gradient-to-r from-[#07111e] via-[#07111e]/82 to-[#07111e]/18"></div>
+        <div class="relative mx-auto flex min-h-[calc(92vh-6rem)] max-w-6xl items-center px-5 pb-20">
+          <div class="max-w-2xl">
+            <p class="text-sm font-semibold uppercase tracking-[0.24em] text-[#79d7ff]">Software Outsourcing Studio</p>
+            <h1 class="mt-5 text-5xl font-bold leading-[1.08] tracking-tight md:text-6xl">
+              让每一次软件外包，都有清晰交付和长期价值
+            </h1>
+            <p class="mt-6 max-w-xl text-lg leading-8 text-white/78">
+              冰硅网络科技为企业提供定制软件开发、小程序、企业系统集成和 AI 自动化落地服务。我们把复杂需求拆成可验证的阶段，把上线后的维护也纳入交付。
+            </p>
+            <div class="mt-9 flex flex-col gap-3 sm:flex-row">
+              <a class="rounded-lg bg-[#7dd3fc] px-5 py-3 text-center text-sm font-bold text-[#07111e] transition hover:bg-[#bae6fd]" href="#contact">
+                获取方案评估
+              </a>
+              <a class="rounded-lg border border-white/35 px-5 py-3 text-center text-sm font-bold text-white transition hover:border-white hover:bg-white/10" href="#services">
+                查看服务能力
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="bg-white">
+        <div class="mx-auto grid max-w-6xl grid-cols-1 gap-px px-5 py-10 sm:grid-cols-3">
+          {metrics.map((item) => (
+            <div class="border border-[#d9e2ec] bg-[#fbfcfe] px-6 py-7">
+              <p class="text-3xl font-bold text-[#0f766e]">{item.value}</p>
+              <p class="mt-2 text-sm text-[#536173]">{item.label}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      <section id="services" class="mx-auto max-w-6xl px-5 py-20">
+        <div class="max-w-2xl">
+          <p class="text-sm font-semibold text-[#0f766e]">服务能力</p>
+          <h2 class="mt-3 text-3xl font-bold tracking-tight md:text-4xl">从业务想法到可运行系统</h2>
+          <p class="mt-4 leading-7 text-[#536173]">
+            外包不是把需求丢出去等待结果，而是建立一套能持续对齐的交付节奏。冰硅网络科技用产品、设计、开发、测试和运维协同推进项目。
+          </p>
+        </div>
+        <div class="mt-10 grid gap-5 md:grid-cols-2">
+          {services.map((service) => (
+            <article class="rounded-lg border border-[#d9e2ec] bg-white p-7 shadow-soft">
+              <div class="mb-5 h-1.5 w-12 bg-[#d97706]"></div>
+              <h3 class="text-xl font-bold">{service.title}</h3>
+              <p class="mt-3 leading-7 text-[#536173]">{service.body}</p>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <section id="process" class="bg-[#102033] text-white">
+        <div class="mx-auto max-w-6xl px-5 py-20">
+          <div class="grid gap-10 lg:grid-cols-[0.82fr_1.18fr] lg:items-start">
+            <div>
+              <p class="text-sm font-semibold text-[#79d7ff]">交付流程</p>
+              <h2 class="mt-3 text-3xl font-bold tracking-tight md:text-4xl">把不确定性前置处理</h2>
+              <p class="mt-4 leading-7 text-white/72">
+                每个阶段都有明确输出物和确认节点，避免做到后期才发现方向偏差。适合从 0 到 1 的新产品，也适合已有系统的持续迭代。
+              </p>
+            </div>
+            <div class="grid gap-4 sm:grid-cols-5">
+              {steps.map((step, index) => (
+                <div class="rounded-lg border border-white/15 bg-white/8 p-5">
+                  <p class="text-sm text-[#79d7ff]">0{index + 1}</p>
+                  <p class="mt-4 font-bold">{step}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="scenarios" class="mx-auto max-w-6xl px-5 py-20">
+        <div class="grid gap-10 lg:grid-cols-[0.75fr_1.25fr]">
+          <div>
+            <p class="text-sm font-semibold text-[#0f766e]">适用场景</p>
+            <h2 class="mt-3 text-3xl font-bold tracking-tight md:text-4xl">为不同阶段的业务补齐技术能力</h2>
+          </div>
+          <div class="grid gap-3 sm:grid-cols-2">
+            {scenarios.map((scenario) => (
+              <div class="flex items-center gap-3 border-b border-[#d9e2ec] bg-white px-4 py-4">
+                <span class="h-2.5 w-2.5 bg-[#d97706]"></span>
+                <span class="font-semibold">{scenario}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section id="contact" class="bg-white">
+        <div class="mx-auto grid max-w-6xl gap-8 px-5 py-20 lg:grid-cols-[1fr_0.7fr] lg:items-center">
+          <div>
+            <p class="text-sm font-semibold text-[#0f766e]">联系冰硅</p>
+            <h2 class="mt-3 text-3xl font-bold tracking-tight md:text-4xl">先聊清楚问题，再决定怎么做</h2>
+            <p class="mt-4 max-w-2xl leading-7 text-[#536173]">
+              你可以带着一句想法、一份需求文档，或者一个已经跑不动的旧系统来沟通。我们会先给出范围判断、技术路径和阶段预算建议。
+            </p>
+          </div>
+          <div class="rounded-lg border border-[#d9e2ec] bg-[#f6f8fb] p-7">
+            <p class="text-sm text-[#536173]">项目咨询</p>
+            <a class="mt-2 block text-2xl font-bold text-[#0f766e]" href="mailto:hello@binggui.example">hello@binggui.example</a>
+            <p class="mt-5 text-sm leading-6 text-[#536173]">
+              可替换为真实邮箱、微信二维码、电话或企业微信入口。
+            </p>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="border-t border-[#d9e2ec] bg-[#f6f8fb]">
+      <div class="mx-auto flex max-w-6xl flex-col gap-2 px-5 py-7 text-sm text-[#536173] md:flex-row md:items-center md:justify-between">
+        <span>© {new Date().getFullYear()} 冰硅网络科技</span>
+        <span>软件外包 · 定制开发 · 系统集成 · AI 自动化</span>
+      </div>
+    </footer>
+  </body>
+</html>

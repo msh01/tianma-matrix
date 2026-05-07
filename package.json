@@ -14,6 +14,7 @@
     "dev": "turbo run dev --parallel",
     "dev:zh-ai": "npm run dev --workspace @tianma/site-zh-ai",
     "dev:zh-it": "npm run dev --workspace @tianma/site-zh-it",
+    "dev:zh-binggui": "npm run dev --workspace @tianma/site-zh-binggui",
     "dev:en-acg": "npm run dev --workspace @tianma/site-en-acg",
     "dev:en-china": "npm run dev --workspace @tianma/site-en-china",
     "lint": "turbo run lint",

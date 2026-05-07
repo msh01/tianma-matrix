@@ -8,6 +8,7 @@
 | --- | --- | --- | --- |
 | `apps/site-zh-ai` | 中文 AI 资讯、教程、工具与自动化工作流 | 微信公众号引流 | `4321` |
 | `apps/site-zh-it` | 中文 IT、软件开发、工程实践博客 | 纯内容展示，无广告、无引流 | `4322` |
+| `apps/site-zh-binggui` | 冰硅网络科技公司官网，面向软件外包与定制开发客户 | 项目咨询与企业获客 | `4325` |
 | `apps/site-en-acg` | 英文动漫、ACG 相关内容站 | Google AdSense | `4323` |
 | `apps/site-en-china` | 英文中国文化、常识、旅行与生活介绍 | Google AdSense | `4324` |
 
@@ -17,6 +18,7 @@
 | --- | --- | --- |
 | `site-zh-ai` | Starlight | 使用 `@astrojs/starlight`，内容位于 `src/content/docs` |
 | `site-zh-it` | Forum-style | 参考 linux.do 的技术社区信息架构，使用论坛式话题列表、分类侧栏和帖子详情页 |
+| `site-zh-binggui` | Company website | 使用 Astro 单页官网，包含服务能力、交付流程、业务场景和联系入口 |
 | `site-en-acg` | Blog | 使用官方 Blog 风格的极简共享布局，并保留 AdSense 占位 |
 | `site-en-china` | Starlight | 使用 `@astrojs/starlight`，通过 `head` 注入 GA4 与 AdSense 脚本 |
 
@@ -27,6 +29,7 @@ tianma-matrix/
 ├── apps/
 │   ├── site-zh-ai/
 │   ├── site-zh-it/
+│   ├── site-zh-binggui/
 │   ├── site-en-acg/
 │   └── site-en-china/
 ├── packages/
@@ -100,6 +103,7 @@ pnpm install
 ```bash
 pnpm dev:zh-ai
 pnpm dev:zh-it
+pnpm dev:zh-binggui
 pnpm dev:en-acg
 pnpm dev:en-china
 ```
@@ -109,6 +113,7 @@ pnpm dev:en-china
 ```text
 site-zh-ai      http://localhost:4321
 site-zh-it      http://localhost:4322
+site-zh-binggui http://localhost:4325
 site-en-acg     http://localhost:4323
 site-en-china   http://localhost:4324
 ```
@@ -133,12 +138,13 @@ pnpm build
 1. 编译 `packages/scraper-utils`
 2. 构建 `site-zh-ai`
 3. 构建 `site-zh-it`
-4. 构建 `site-en-acg`
-5. 构建 `site-en-china`
+4. 构建 `site-zh-binggui`
+5. 构建 `site-en-acg`
+6. 构建 `site-en-china`
 
 构建产物位于各站点的 `dist/` 目录。
 
-如果本机 pnpm/Turbo 环境稳定，也可以使用 Turborepo：
+Turborepo 构建命令：
 
 ```bash
 pnpm build:turbo

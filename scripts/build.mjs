@@ -14,7 +14,7 @@ const tasks = [
     args: [tsc, "-p", "packages/scraper-utils/tsconfig.json"],
     cwd: root
   },
-  ...["site-zh-ai", "site-zh-it", "site-en-acg", "site-en-china"].map((site) => ({
+  ...["site-zh-ai", "site-zh-it", "site-zh-binggui", "site-en-acg", "site-en-china"].map((site) => ({
     name: `@tianma/${site}`,
     command: process.execPath,
     args: [astro, "build"],
