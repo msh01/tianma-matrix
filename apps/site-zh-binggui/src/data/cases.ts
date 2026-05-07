@@ -2,6 +2,7 @@ export type CaseStudy = {
   slug: string;
   title: string;
   category: string;
+  image: string;
   summary: string;
   background: string;
   modules: string[];
@@ -14,6 +15,7 @@ export const caseStudies: CaseStudy[] = [
     slug: "retail-membership-platform",
     title: "门店会员小程序",
     category: "零售门店",
+    image: "/assets/cases/retail-membership-platform.png",
     summary: "一个给连锁门店用的会员小程序，包含注册、积分、优惠券、门店核销和后台活动配置。",
     background:
       "客户有多家线下门店，会员信息、优惠券发放和活动核销长期靠表格和店员手工记录。总部想先做一个轻量版本，把最常用的会员和活动流程放到微信里。",
@@ -29,6 +31,7 @@ export const caseStudies: CaseStudy[] = [
     slug: "manufacturing-workflow-system",
     title: "售后工单管理系统",
     category: "制造企业",
+    image: "/assets/cases/manufacturing-workflow-system.png",
     summary: "给制造企业售后团队使用的工单系统，覆盖客户报修、派单、备件申请、现场记录和处理结果归档。",
     background:
       "客户原来的售后流程主要在微信群里推进。客服接到问题后发给技术人员，技术人员再找仓库确认备件，最后由财务核对费用。消息多了以后，容易漏单，也很难回头查某个客户的问题处理到哪一步。",
@@ -44,6 +47,7 @@ export const caseStudies: CaseStudy[] = [
     slug: "ai-content-operation-tool",
     title: "内容运营辅助工具",
     category: "AI 工具",
+    image: "/assets/cases/ai-content-operation-tool.png",
     summary: "一个内部使用的内容整理工具，用来管理选题、素材、初稿、审核意见和发布清单。",
     background:
       "客户的内容团队每天要处理多个账号和多个栏目。素材在网盘，选题在表格，初稿在文档，审核意见在聊天记录里。AI 不是替代编辑，而是帮团队少做重复整理。",
