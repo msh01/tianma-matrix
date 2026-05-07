@@ -1,0 +1,29 @@
+---
+import { siteConfig } from "../../site.config";
+
+type Link = {
+  text: string;
+  href: string;
+};
+
+export interface Props {
+  links?: Link[];
+}
+
+const { links = [] } = Astro.props;
+---
+
+<footer class="border-t border-slate-200 bg-white">
+  <div class="mx-auto grid max-w-7xl gap-8 px-4 py-10 sm:px-6 md:grid-cols-[1fr_auto] md:items-center">
+    <div>
+      <p class="font-bold text-slate-950">{siteConfig.name}</p>
+      <p class="mt-2 max-w-xl text-sm leading-6 text-slate-500">软件外包、定制开发、系统集成与 AI 自动化落地伙伴。</p>
+    </div>
+    <nav class="flex flex-wrap gap-5 text-sm font-medium text-slate-600">
+      {links.map((link) => <a class="transition hover:text-cyan-700" href={link.href}>{link.text}</a>)}
+    </nav>
+  </div>
+  <div class="border-t border-slate-100 py-5 text-center text-sm text-slate-500">
+    © {new Date().getFullYear()} {siteConfig.name}
+  </div>
+</footer>

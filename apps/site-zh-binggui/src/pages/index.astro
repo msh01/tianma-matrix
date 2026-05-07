@@ -1,204 +1,137 @@
 ---
+import CallToAction from "../components/widgets/CallToAction.astro";
+import Content from "../components/widgets/Content.astro";
+import FAQs from "../components/widgets/FAQs.astro";
+import Features from "../components/widgets/Features.astro";
+import Hero from "../components/widgets/Hero.astro";
+import Stats from "../components/widgets/Stats.astro";
+import Steps from "../components/widgets/Steps.astro";
+import PageLayout from "../layouts/PageLayout.astro";
 import "../styles/global.css";
 
 const services = [
   {
     title: "定制软件开发",
-    body: "从需求梳理、原型设计到前后端开发，为业务系统、管理后台和数据平台提供完整交付。"
+    description: "面向业务系统、管理后台、门户网站、数据平台和 SaaS 产品，提供从原型到上线的完整交付。",
+    icon: "▣"
   },
   {
-    title: "移动端与小程序",
-    body: "覆盖微信小程序、H5、App 混合开发，适合会员、预约、门店、内容和交易类场景。"
+    title: "小程序与移动端",
+    description: "建设微信小程序、H5 和移动端应用，适合会员、预约、门店、内容和交易类业务。",
+    icon: "◈"
   },
   {
-    title: "企业系统集成",
-    body: "打通 CRM、ERP、支付、消息、工单、报表与第三方接口，让旧系统和新业务协同运转。"
+    title: "系统集成与重构",
+    description: "打通 CRM、ERP、支付、消息、工单、报表和第三方接口，也能维护与重构遗留系统。",
+    icon: "◇"
   },
   {
-    title: "AI 与自动化工具",
-    body: "把内容生成、客服助理、流程审批和数据分析嵌入现有业务，减少重复操作。"
+    title: "AI 自动化工具",
+    description: "把内容生成、客服助理、流程审批和数据分析嵌入现有系统，减少重复操作。",
+    icon: "✦"
   }
 ];
 
-const steps = ["业务诊断", "原型确认", "迭代开发", "测试上线", "运维增长"];
-
-const scenarios = [
-  "企业官网与品牌门户",
-  "电商与本地生活系统",
-  "SaaS 与内部管理平台",
-  "数据看板与业务中台",
-  "AI 应用与自动化流程",
-  "遗留系统重构与维护"
+const process = [
+  { title: "业务诊断", description: "梳理业务目标、角色流程、数据边界和上线约束。" },
+  { title: "原型确认", description: "输出信息架构、页面原型和阶段报价，先确认再开发。" },
+  { title: "迭代开发", description: "以可演示版本推进，定期同步进度、风险和取舍。" },
+  { title: "测试上线", description: "完成联调、验收、部署和基础监控，保证上线节奏。" },
+  { title: "运维增长", description: "持续处理反馈、数据优化、功能迭代和稳定性维护。" }
 ];
 
-const metrics = [
-  { value: "7+", label: "核心交付场景" },
-  { value: "2-4周", label: "首个可用版本" },
-  { value: "1对1", label: "项目经理跟进" }
+const scenarios = [
+  {
+    title: "从 0 到 1 新产品",
+    description: "适合创业团队、企业新业务和内部创新项目，用最短路径验证核心流程。"
+  },
+  {
+    title: "已有系统持续迭代",
+    description: "接手老项目、补齐文档和测试，逐步优化架构，避免一次性大重写。"
+  },
+  {
+    title: "业务数字化补能力",
+    description: "把线下流程、Excel 协作和人工流转转成可追踪、可统计、可自动化的系统。"
+  }
+];
+
+const faqs = [
+  {
+    title: "没有完整需求文档可以聊吗？",
+    description: "可以。初期只需要说清业务目标、主要用户和当前问题，我们会一起把需求拆成可评估范围。"
+  },
+  {
+    title: "项目多久能看到第一个版本？",
+    description: "常见业务系统会在 2-4 周内交付首个可演示版本，具体节奏取决于接口、数据和页面复杂度。"
+  },
+  {
+    title: "上线后是否继续维护？",
+    description: "支持。可以按月维护，也可以按迭代包合作，覆盖问题修复、功能优化、监控和部署支持。"
+  }
 ];
 ---
 
-<!doctype html>
-<html lang="zh-CN">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>冰硅网络科技 | 软件外包与定制开发公司</title>
-    <meta
-      name="description"
-      content="冰硅网络科技专注软件外包、定制软件开发、小程序、企业系统集成、AI 自动化工具和长期运维服务。"
-    />
-    <link rel="canonical" href="https://binggui.example/" />
-    <meta property="og:site_name" content="冰硅网络科技" />
-    <meta property="og:title" content="冰硅网络科技 | 软件外包与定制开发公司" />
-    <meta
-      property="og:description"
-      content="用稳定的工程交付，把业务想法做成真正可上线、可维护、可增长的软件系统。"
-    />
-    <meta property="og:type" content="website" />
-    <meta property="og:image" content="/assets/software-delivery-hero.png" />
-    <meta name="twitter:card" content="summary_large_image" />
-  </head>
-  <body class="min-h-screen bg-[#f6f8fb] font-sans text-[#16202f] antialiased">
-    <header class="fixed inset-x-0 top-0 z-20 border-b border-white/15 bg-[#0c1724]/80 backdrop-blur">
-      <nav class="mx-auto flex max-w-6xl items-center justify-between px-5 py-4 text-white">
-        <a class="text-base font-bold tracking-wide" href="/">冰硅网络科技</a>
-        <div class="hidden items-center gap-7 text-sm text-white/78 md:flex">
-          <a class="transition hover:text-white" href="#services">服务</a>
-          <a class="transition hover:text-white" href="#process">流程</a>
-          <a class="transition hover:text-white" href="#scenarios">场景</a>
-          <a class="transition hover:text-white" href="#contact">联系</a>
-        </div>
-        <a class="rounded-lg bg-white px-4 py-2 text-sm font-semibold text-[#0c1724] transition hover:bg-[#dff5ff]" href="#contact">
-          咨询项目
-        </a>
-      </nav>
-    </header>
+<PageLayout>
+  <Hero image={{ src: "/assets/software-delivery-hero.png", alt: "冰硅网络科技软件交付工作台视觉" }}>
+    <Fragment slot="title">
+      让软件外包更清晰、更可控、更能长期运行
+    </Fragment>
+    <Fragment slot="subtitle">
+      冰硅网络科技用 AstroWind 式的高性能官网呈现服务能力，也用同样的工程习惯交付客户项目：需求清楚、阶段可见、上线稳妥、后续可维护。
+    </Fragment>
+    <Fragment slot="actions">
+      <a class="rounded-full bg-cyan-700 px-6 py-3 text-center text-sm font-bold text-white shadow-soft transition hover:bg-cyan-800" href="#contact">
+        获取方案评估
+      </a>
+      <a class="rounded-full border border-slate-300 bg-white px-6 py-3 text-center text-sm font-bold text-slate-950 transition hover:border-cyan-700 hover:text-cyan-700" href="#features">
+        查看服务能力
+      </a>
+    </Fragment>
+  </Hero>
 
-    <main>
-      <section class="relative min-h-[92vh] overflow-hidden bg-[#0c1724] pt-24 text-white">
-        <img
-          class="absolute inset-0 h-full w-full object-cover opacity-72"
-          src="/assets/software-delivery-hero.png"
-          alt="冰硅网络科技软件交付工作台视觉"
-          loading="eager"
-        />
-        <div class="absolute inset-0 bg-gradient-to-r from-[#07111e] via-[#07111e]/82 to-[#07111e]/18"></div>
-        <div class="relative mx-auto flex min-h-[calc(92vh-6rem)] max-w-6xl items-center px-5 pb-20">
-          <div class="max-w-2xl">
-            <p class="text-sm font-semibold uppercase tracking-[0.24em] text-[#79d7ff]">Software Outsourcing Studio</p>
-            <h1 class="mt-5 text-5xl font-bold leading-[1.08] tracking-tight md:text-6xl">
-              让每一次软件外包，都有清晰交付和长期价值
-            </h1>
-            <p class="mt-6 max-w-xl text-lg leading-8 text-white/78">
-              冰硅网络科技为企业提供定制软件开发、小程序、企业系统集成和 AI 自动化落地服务。我们把复杂需求拆成可验证的阶段，把上线后的维护也纳入交付。
-            </p>
-            <div class="mt-9 flex flex-col gap-3 sm:flex-row">
-              <a class="rounded-lg bg-[#7dd3fc] px-5 py-3 text-center text-sm font-bold text-[#07111e] transition hover:bg-[#bae6fd]" href="#contact">
-                获取方案评估
-              </a>
-              <a class="rounded-lg border border-white/35 px-5 py-3 text-center text-sm font-bold text-white transition hover:border-white hover:bg-white/10" href="#services">
-                查看服务能力
-              </a>
-            </div>
-          </div>
-        </div>
-      </section>
+  <Stats
+    stats={[
+      { title: "核心交付场景", amount: "7+" },
+      { title: "首个可用版本", amount: "2-4周" },
+      { title: "项目经理跟进", amount: "1对1" }
+    ]}
+  />
 
-      <section class="bg-white">
-        <div class="mx-auto grid max-w-6xl grid-cols-1 gap-px px-5 py-10 sm:grid-cols-3">
-          {metrics.map((item) => (
-            <div class="border border-[#d9e2ec] bg-[#fbfcfe] px-6 py-7">
-              <p class="text-3xl font-bold text-[#0f766e]">{item.value}</p>
-              <p class="mt-2 text-sm text-[#536173]">{item.label}</p>
-            </div>
-          ))}
-        </div>
-      </section>
+  <Features
+    id="features"
+    tagline="Services"
+    title="像产品团队一样承接外包项目"
+    subtitle="参考 AstroWind 的组件化页面结构，把能力拆成清楚的模块，也把项目拆成清楚的交付节点。"
+    items={services}
+  />
 
-      <section id="services" class="mx-auto max-w-6xl px-5 py-20">
-        <div class="max-w-2xl">
-          <p class="text-sm font-semibold text-[#0f766e]">服务能力</p>
-          <h2 class="mt-3 text-3xl font-bold tracking-tight md:text-4xl">从业务想法到可运行系统</h2>
-          <p class="mt-4 leading-7 text-[#536173]">
-            外包不是把需求丢出去等待结果，而是建立一套能持续对齐的交付节奏。冰硅网络科技用产品、设计、开发、测试和运维协同推进项目。
-          </p>
-        </div>
-        <div class="mt-10 grid gap-5 md:grid-cols-2">
-          {services.map((service) => (
-            <article class="rounded-lg border border-[#d9e2ec] bg-white p-7 shadow-soft">
-              <div class="mb-5 h-1.5 w-12 bg-[#d97706]"></div>
-              <h3 class="text-xl font-bold">{service.title}</h3>
-              <p class="mt-3 leading-7 text-[#536173]">{service.body}</p>
-            </article>
-          ))}
-        </div>
-      </section>
+  <Content
+    id="solutions"
+    tagline="Solutions"
+    title="为不同阶段的业务补齐技术能力"
+    items={scenarios}
+    image={{ src: "/assets/software-delivery-hero.png", alt: "软件外包交付协作场景" }}
+    isReversed
+  />
 
-      <section id="process" class="bg-[#102033] text-white">
-        <div class="mx-auto max-w-6xl px-5 py-20">
-          <div class="grid gap-10 lg:grid-cols-[0.82fr_1.18fr] lg:items-start">
-            <div>
-              <p class="text-sm font-semibold text-[#79d7ff]">交付流程</p>
-              <h2 class="mt-3 text-3xl font-bold tracking-tight md:text-4xl">把不确定性前置处理</h2>
-              <p class="mt-4 leading-7 text-white/72">
-                每个阶段都有明确输出物和确认节点，避免做到后期才发现方向偏差。适合从 0 到 1 的新产品，也适合已有系统的持续迭代。
-              </p>
-            </div>
-            <div class="grid gap-4 sm:grid-cols-5">
-              {steps.map((step, index) => (
-                <div class="rounded-lg border border-white/15 bg-white/8 p-5">
-                  <p class="text-sm text-[#79d7ff]">0{index + 1}</p>
-                  <p class="mt-4 font-bold">{step}</p>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-      </section>
+  <Steps
+    id="process"
+    title="把不确定性前置处理"
+    subtitle="每个阶段都有明确输出物和确认节点，适合从 0 到 1 的新产品，也适合已有系统的持续迭代。"
+    items={process}
+  />
 
-      <section id="scenarios" class="mx-auto max-w-6xl px-5 py-20">
-        <div class="grid gap-10 lg:grid-cols-[0.75fr_1.25fr]">
-          <div>
-            <p class="text-sm font-semibold text-[#0f766e]">适用场景</p>
-            <h2 class="mt-3 text-3xl font-bold tracking-tight md:text-4xl">为不同阶段的业务补齐技术能力</h2>
-          </div>
-          <div class="grid gap-3 sm:grid-cols-2">
-            {scenarios.map((scenario) => (
-              <div class="flex items-center gap-3 border-b border-[#d9e2ec] bg-white px-4 py-4">
-                <span class="h-2.5 w-2.5 bg-[#d97706]"></span>
-                <span class="font-semibold">{scenario}</span>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
+  <FAQs id="faq" title="开始合作前，常见问题先说清楚" items={faqs} />
 
-      <section id="contact" class="bg-white">
-        <div class="mx-auto grid max-w-6xl gap-8 px-5 py-20 lg:grid-cols-[1fr_0.7fr] lg:items-center">
-          <div>
-            <p class="text-sm font-semibold text-[#0f766e]">联系冰硅</p>
-            <h2 class="mt-3 text-3xl font-bold tracking-tight md:text-4xl">先聊清楚问题，再决定怎么做</h2>
-            <p class="mt-4 max-w-2xl leading-7 text-[#536173]">
-              你可以带着一句想法、一份需求文档，或者一个已经跑不动的旧系统来沟通。我们会先给出范围判断、技术路径和阶段预算建议。
-            </p>
-          </div>
-          <div class="rounded-lg border border-[#d9e2ec] bg-[#f6f8fb] p-7">
-            <p class="text-sm text-[#536173]">项目咨询</p>
-            <a class="mt-2 block text-2xl font-bold text-[#0f766e]" href="mailto:hello@binggui.example">hello@binggui.example</a>
-            <p class="mt-5 text-sm leading-6 text-[#536173]">
-              可替换为真实邮箱、微信二维码、电话或企业微信入口。
-            </p>
-          </div>
-        </div>
-      </section>
-    </main>
-
-    <footer class="border-t border-[#d9e2ec] bg-[#f6f8fb]">
-      <div class="mx-auto flex max-w-6xl flex-col gap-2 px-5 py-7 text-sm text-[#536173] md:flex-row md:items-center md:justify-between">
-        <span>© {new Date().getFullYear()} 冰硅网络科技</span>
-        <span>软件外包 · 定制开发 · 系统集成 · AI 自动化</span>
-      </div>
-    </footer>
-  </body>
-</html>
+  <CallToAction id="contact">
+    <Fragment slot="title">先聊清楚问题，再决定怎么做</Fragment>
+    <Fragment slot="subtitle">
+      你可以带着一句想法、一份需求文档，或者一个已经跑不动的旧系统来沟通。我们会先给出范围判断、技术路径和阶段预算建议。
+    </Fragment>
+    <Fragment slot="actions">
+      <a class="inline-flex rounded-full bg-white px-6 py-3 text-sm font-bold text-slate-950 transition hover:bg-cyan-100" href="mailto:hello@binggui.example">
+        hello@binggui.example
+      </a>
+    </Fragment>
+  </CallToAction>
+</PageLayout>

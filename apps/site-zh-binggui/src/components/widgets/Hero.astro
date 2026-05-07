@@ -1,0 +1,42 @@
+---
+export interface Props {
+  image: {
+    src: string;
+    alt: string;
+  };
+}
+
+const { image } = Astro.props;
+---
+
+<section class="relative overflow-hidden bg-white">
+  <div class="absolute inset-0 bg-[radial-gradient(circle_at_top_left,_rgba(14,116,144,0.16),_transparent_38%),radial-gradient(circle_at_bottom_right,_rgba(217,119,6,0.14),_transparent_34%)]"></div>
+  <div class="relative mx-auto grid min-h-[86vh] max-w-7xl items-center gap-12 px-4 py-20 sm:px-6 lg:grid-cols-[0.95fr_1.05fr] lg:py-24">
+    <div class="max-w-3xl">
+      <p class="text-sm font-bold uppercase tracking-[0.22em] text-cyan-700">Software Outsourcing Studio</p>
+      <h1 class="mt-5 text-5xl font-extrabold tracking-tight text-slate-950 md:text-6xl">
+        <slot name="title" />
+      </h1>
+      <p class="mt-6 max-w-2xl text-lg leading-8 text-slate-600">
+        <slot name="subtitle" />
+      </p>
+      <div class="mt-9 flex flex-col gap-3 sm:flex-row">
+        <slot name="actions" />
+      </div>
+    </div>
+
+    <div class="relative">
+      <div class="absolute -inset-4 rounded-[2rem] bg-cyan-700/10 blur-2xl"></div>
+      <img
+        class="relative aspect-[4/3] w-full rounded-[1.75rem] border border-white/80 object-cover shadow-soft"
+        src={image.src}
+        alt={image.alt}
+        loading="eager"
+      />
+      <div class="absolute -bottom-7 left-8 right-8 rounded-2xl border border-slate-200 bg-white/90 p-5 shadow-soft backdrop-blur">
+        <p class="text-sm font-semibold text-slate-950">阶段化交付</p>
+        <p class="mt-1 text-sm leading-6 text-slate-500">需求、原型、开发、测试、上线与运维都有可确认输出。</p>
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,3 +1,24 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+  :root {
+    color-scheme: light;
+    --aw-color-bg-page: 248 250 252;
+    --aw-color-bg-muted: 241 245 249;
+    --aw-color-text-heading: 15 23 42;
+    --aw-color-text-default: 51 65 85;
+    --aw-color-primary: 14 116 144;
+    --aw-color-secondary: 217 119 6;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    background: rgb(var(--aw-color-bg-page));
+    color: rgb(var(--aw-color-text-default));
+  }
+}

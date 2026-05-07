@@ -1,0 +1,23 @@
+---
+type Stat = {
+  title: string;
+  amount: string;
+};
+
+export interface Props {
+  stats: Stat[];
+}
+
+const { stats } = Astro.props;
+---
+
+<section class="bg-white py-12">
+  <div class="mx-auto grid max-w-7xl gap-4 px-4 sm:grid-cols-3 sm:px-6">
+    {stats.map((stat) => (
+      <div class="rounded-2xl border border-slate-200 bg-slate-50 p-7 text-center">
+        <p class="text-4xl font-extrabold text-cyan-700">{stat.amount}</p>
+        <p class="mt-2 text-sm font-medium text-slate-600">{stat.title}</p>
+      </div>
+    ))}
+  </div>
+</section>
