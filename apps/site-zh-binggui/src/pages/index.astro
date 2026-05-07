@@ -1,11 +1,10 @@
 ---
-import CallToAction from "../components/widgets/CallToAction.astro";
+import CaseGrid from "../components/widgets/CaseGrid.astro";
 import Content from "../components/widgets/Content.astro";
-import FAQs from "../components/widgets/FAQs.astro";
 import Features from "../components/widgets/Features.astro";
 import Hero from "../components/widgets/Hero.astro";
 import Stats from "../components/widgets/Stats.astro";
-import Steps from "../components/widgets/Steps.astro";
+import { caseStudies } from "../data/cases";
 import PageLayout from "../layouts/PageLayout.astro";
 import "../styles/global.css";
 
@@ -32,14 +31,6 @@ const services = [
   }
 ];
 
-const process = [
-  { title: "业务诊断", description: "梳理业务目标、角色流程、数据边界和上线约束。" },
-  { title: "原型确认", description: "输出信息架构、页面原型和阶段报价，先确认再开发。" },
-  { title: "迭代开发", description: "以可演示版本推进，定期同步进度、风险和取舍。" },
-  { title: "测试上线", description: "完成联调、验收、部署和基础监控，保证上线节奏。" },
-  { title: "运维增长", description: "持续处理反馈、数据优化、功能迭代和稳定性维护。" }
-];
-
 const scenarios = [
   {
     title: "从 0 到 1 新产品",
@@ -55,20 +46,6 @@ const scenarios = [
   }
 ];
 
-const faqs = [
-  {
-    title: "没有完整需求文档可以聊吗？",
-    description: "可以。初期只需要说清业务目标、主要用户和当前问题，我们会一起把需求拆成可评估范围。"
-  },
-  {
-    title: "项目多久能看到第一个版本？",
-    description: "常见业务系统会在 2-4 周内交付首个可演示版本，具体节奏取决于接口、数据和页面复杂度。"
-  },
-  {
-    title: "上线后是否继续维护？",
-    description: "支持。可以按月维护，也可以按迭代包合作，覆盖问题修复、功能优化、监控和部署支持。"
-  }
-];
 ---
 
 <PageLayout>
@@ -80,8 +57,8 @@ const faqs = [
       冰硅网络科技用 AstroWind 式的高性能官网呈现服务能力，也用同样的工程习惯交付客户项目：需求清楚、阶段可见、上线稳妥、后续可维护。
     </Fragment>
     <Fragment slot="actions">
-      <a class="rounded-full bg-cyan-700 px-6 py-3 text-center text-sm font-bold text-white shadow-soft transition hover:bg-cyan-800" href="#contact">
-        获取方案评估
+      <a class="rounded-full bg-cyan-700 px-6 py-3 text-center text-sm font-bold text-white shadow-soft transition hover:bg-cyan-800" href="#cases">
+        查看案例
       </a>
       <a class="rounded-full border border-slate-300 bg-white px-6 py-3 text-center text-sm font-bold text-slate-950 transition hover:border-cyan-700 hover:text-cyan-700" href="#features">
         查看服务能力
@@ -114,24 +91,10 @@ const faqs = [
     isReversed
   />
 
-  <Steps
-    id="process"
-    title="把不确定性前置处理"
-    subtitle="每个阶段都有明确输出物和确认节点，适合从 0 到 1 的新产品，也适合已有系统的持续迭代。"
-    items={process}
+  <CaseGrid
+    id="cases"
+    title="从真实业务场景看交付方式"
+    subtitle="这些案例入口对应独立文章页，展示冰硅网络科技在小程序、企业系统集成和 AI 自动化方向的典型交付路径。"
+    items={caseStudies}
   />
-
-  <FAQs id="faq" title="开始合作前，常见问题先说清楚" items={faqs} />
-
-  <CallToAction id="contact">
-    <Fragment slot="title">先聊清楚问题，再决定怎么做</Fragment>
-    <Fragment slot="subtitle">
-      你可以带着一句想法、一份需求文档，或者一个已经跑不动的旧系统来沟通。我们会先给出范围判断、技术路径和阶段预算建议。
-    </Fragment>
-    <Fragment slot="actions">
-      <a class="inline-flex rounded-full bg-white px-6 py-3 text-sm font-bold text-slate-950 transition hover:bg-cyan-100" href="mailto:hello@binggui.example">
-        hello@binggui.example
-      </a>
-    </Fragment>
-  </CallToAction>
 </PageLayout>
