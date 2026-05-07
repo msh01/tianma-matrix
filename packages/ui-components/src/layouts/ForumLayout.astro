@@ -54,10 +54,11 @@ const tags = ["人工智能", "公告", "原创", "快问快答", "软件开发"
           <button class="hidden h-9 w-9 items-center justify-center rounded text-3xl leading-none text-[#aaa] lg:flex" aria-label="菜单">
             ≡
           </button>
-          <a class="flex items-center gap-3" href="/">
-            <span class="relative block h-10 w-10 overflow-hidden rounded-full bg-[#f6b21a]">
-              <span class="absolute inset-x-0 top-0 h-1/2 bg-[#111827]"></span>
-              <span class="absolute inset-x-0 top-1/2 h-[3px] bg-white"></span>
+          <a class="flex items-center gap-3" href="/" aria-label={`${siteName} 首页`}>
+            <span class="relative flex h-10 w-10 items-center justify-center overflow-hidden rounded bg-[#0f172a] shadow-sm">
+              <span class="absolute inset-x-0 top-0 h-1 bg-[#22d3ee]"></span>
+              <span class="font-mono text-[15px] font-bold leading-none text-white">&lt;/&gt;</span>
+              <span class="absolute bottom-2 right-2 h-1.5 w-1.5 rounded-full bg-[#84cc16]"></span>
             </span>
             <span class="text-lg font-bold tracking-wide text-[#222]">{siteName}</span>
           </a>

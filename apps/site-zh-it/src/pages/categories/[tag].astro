@@ -1,7 +1,7 @@
 ---
 import { getCollection } from "astro:content";
 import ForumLayout from "@tianma/ui-components/ForumLayout.astro";
-import { formatViews, getActivityLabel, getArticleViews, getReplyCount } from "../../lib/views";
+import { formatViews, getArticleViews, getReplyCount } from "../../lib/views";
 import "../../styles/global.css";
 
 export async function getStaticPaths() {
@@ -33,7 +33,7 @@ const { tag, articles } = Astro.props;
     <h1 class="mt-2 text-3xl font-semibold text-[#222]">{tag}</h1>
     <div class="mt-8 border-t border-[#e5e5e5]">
       {articles.map((article) => (
-        <article class="grid grid-cols-[1fr_80px_92px_86px] gap-4 border-b border-[#eee] py-4">
+        <article class="grid grid-cols-[1fr_80px_92px_104px] gap-4 border-b border-[#eee] py-4">
           <div class="min-w-0">
             <h2 class="truncate text-xl font-medium text-[#222]">
               <a class="hover:text-[#0088cc]" href={`/articles/${article.slug}/`}>{article.data.title}</a>
@@ -42,12 +42,9 @@ const { tag, articles } = Astro.props;
           </div>
           <div class="text-right font-bold text-[#9a6a3a]">{getReplyCount(article.slug)}</div>
           <div class="text-right font-bold text-[#ff6a00]">{formatViews(getArticleViews(article.slug))}</div>
-          <div class="text-right text-[#999]">{getActivityLabel(article.slug)}</div>
-          <div class="hidden">
-            <time datetime={article.data.publishedAt.toISOString()}>
-              {article.data.publishedAt.toISOString().slice(0, 10)}
-            </time>
-          </div>
+          <time class="text-right text-[#999]" datetime={article.data.publishedAt.toISOString()}>
+            {article.data.publishedAt.toISOString().slice(0, 10)}
+          </time>
         </article>
       ))}
     </div>
