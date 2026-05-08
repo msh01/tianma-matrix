@@ -150,6 +150,19 @@ Turborepo 构建命令：
 pnpm build:turbo
 ```
 
+## Vercel 部署映射
+
+Vercel 上每个站点对应一个独立 Project，但都连接同一个 GitHub 仓库 `msh01/tianma-matrix`，监听 `main` 分支。Project 的 `Root Directory` 保持仓库根目录 `.`，这样远端构建能读取 `pnpm-workspace.yaml`、`pnpm-lock.yaml`、共享 `packages/*` 和根配置文件。
+
+具体站点映射通过 `Build Command` 与 `Output Directory` 完成。例如中文 IT 站：
+
+```text
+Build Command: pnpm --filter @tianma/site-zh-it build
+Output Directory: apps/site-zh-it/dist
+```
+
+也就是说，Vercel 从仓库根目录安装依赖，只构建指定 workspace 包，然后发布该站点的 `dist` 目录。其他站点同理，把 filter 包名和输出目录替换为对应 `apps/site-*` 即可。
+
 ## Tailwind 共享配置
 
 根目录的 `tailwind.config.base.mjs` 是共享基础配置。四个子站点的 `tailwind.config.mjs` 都通过 `presets` 继承它，并额外扫描共享组件包：
